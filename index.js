@@ -1,47 +1,25 @@
-var css = require('css');
-var fs = require('fs');
+var fileName = './main.css';
+var extractor = require('./lib/extractor.js');
 
-fs.readFile('./main.css', { encoding: 'utf-8' }, function (err, data) {
-    if (err) {
-        console.err(err);
-        return;
-    }
+var express = require('express');
+var app = express();
+var port = 9999;
 
-    var ast = css.parse(data);
-    processStylesheet(ast);
+app.use(express.static(__dirname + '/css'));
+
+app.get('/', function (req, res) {
+    var options = {
+        colors: extractor(fileName)
+    };
+
+    res.render('index.jade', options);
 });
 
-/**
- * @param {Object} dataChunk
- */
-function processStylesheet(dataChunk) {
-    (Object.keys(dataChunk.stylesheet) || []).forEach(function (stylesheetKey) {
-        if (stylesheetKey === 'rules') {
-            processRules(dataChunk.stylesheet[stylesheetKey]);
-        }
-    });
-}
+var server = app.listen(port, function () {
 
-/**
- * @param {Object[]} rules
- */
-function processRules(rules) {
-    // filter rules only
-    rules = rules.filter(function (item) {
-        return item.type === 'rule';
-    });
+    var host = server.address().address;
+    var port = server.address().port;
 
-    rules.forEach(function (rule) {
-        processDeclarations(rule.declarations || []);
-    });
-}
+    console.log('Example app listening at http://%s:%s', host, port);
 
-function processDeclarations(declarations) {
-    declarations.forEach(function (decl) {
-        if (decl.type === 'declaration') {
-            if (decl.property.indexOf('color') >= 0) {
-                console.log(decl.value);
-            }
-        }
-    });
-}
+});

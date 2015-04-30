@@ -1,0 +1,8 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", type="text/css", href="index.css")
+    body
+        ul
+            each cc in colors
+                li(style="background-color: #{cc.color}", data-color="#{JSON.stringify(cc)}") 
