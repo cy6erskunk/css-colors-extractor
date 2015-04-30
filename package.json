@@ -1,0 +1,17 @@
+{
+  "name": "css-colors-stat",
+  "version": "0.1.0",
+  "description": "extract colors and be happy!",
+  "main": "index.js",
+  "dependencies": {
+    "css": "^2.2.0"
+  },
+  "devDependencies": {
+    "css": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
