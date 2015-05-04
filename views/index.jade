@@ -4,5 +4,6 @@ html
         link(rel="stylesheet", type="text/css", href="index.css")
     body
         ul
-            each cc in colors
-                li(style="background-color: #{cc.color}", data-color="#{JSON.stringify(cc)}") 
+            each cc, key in colors
+                li(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}")
+                    span #{cc.instances.length}
