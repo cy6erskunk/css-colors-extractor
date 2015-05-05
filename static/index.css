@@ -1,11 +1,51 @@
-ul {
+html {
+    font-family: sans-serif;
+}
+
+.color-list {
     margin: 0;
     padding: 0;
 }
 
-li {
+.color-list-item {
     display: inline-block;
     width: 100px;
     height: 100px;
     margin: 4px;
+}
+
+.color-list-item__number {
+    background-color: #fff;
+}
+
+#template {
+    display: none;
+}
+
+.color-info {
+    display: inline-block;
+    box-shadow: 0 0 0 1px #aaa;
+    padding: 8px;
+}
+
+.color {
+    font-size: 20px;
+    padding-bottom: 6px;
+}
+
+.instance {
+    box-shadow: 0 0 0 1px #ddd;
+    padding: 6px;
+}
+.instance + .instance {
+    margin-top: 6px;
+}
+
+.file {
+    margin-bottom: 6px;
+}
+
+.rule__separator {
+    color: #4395f0;
+    padding-right: 6px;
 }

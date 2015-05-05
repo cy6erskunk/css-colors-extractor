@@ -3,7 +3,22 @@ html
     head
         link(rel="stylesheet", type="text/css", href="index.css")
     body
-        ul
+        div#template
+            div.color-info
+                div.color #XXX
+                div.instance
+                    div.file
+                        span.file__name filename
+                        span.file__separator :
+                        span.file__line-number 333
+                    div.rule
+                        div.rule__selector .class
+                        div.rule__rule
+                            span.property color
+                            span.rule__separator :
+                            span.value #333
+        ul.color-list
             each cc, key in colors
-                li(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}")
-                    span #{cc.instances.length}
+                li.color-list-item(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}")
+                    span.color-list-item__number #{cc.instances.length}
+        script(src="info.js")
