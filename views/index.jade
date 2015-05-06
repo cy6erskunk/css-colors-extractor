@@ -6,17 +6,22 @@ html
         div#template
             div.color-info
                 div.color #XXX
-                div.instance
-                    div.file
-                        span.file__name filename
-                        span.file__separator :
-                        span.file__line-number 333
-                    div.rule
-                        div.rule__selector .class
-                        div.rule__rule
-                            span.property color
-                            span.rule__separator :
-                            span.value #333
+                div.instances
+        div#instance-template
+            div.instance
+                div.file
+                    span.file__name filename
+                    span.file__separator :
+                    span.file__line-number 333
+                div.rule
+                    div.selectors
+                    div.rule__rule
+                        span.property color
+                        span.rule__separator :
+                        span.value #333
+        div#selector-template
+            div.rule__selector .class
+
         ul.color-list
             each cc, key in colors
                 li.color-list-item(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}")

@@ -18,7 +18,9 @@ html {
     background-color: #fff;
 }
 
-#template {
+#template,
+#instance-template,
+#selector-template {
     display: none;
 }
 
