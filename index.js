@@ -1,13 +1,13 @@
 var extractor = require('./lib/extractor.js');
 var glob = require('glob');
 
-var paths = process.argv[process.argv.length - 1];
+var cwd = process.argv[process.argv.length - 1];
 var fileNames;
-console.log(paths);
+console.log(cwd);
 
-glob("*.css", { cwd: paths, matchBase: true }, function (err, filenames) {
+glob("*.css", { cwd: cwd, matchBase: true }, function (err, filenames) {
     fileNames = filenames.map(function (name) {
-        return paths + '/' + name;
+        return cwd + '/' + name;
     });
 });
 
@@ -18,10 +18,17 @@ var port = 9999;
 app.use(express.static(__dirname + '/static'));
 
 app.get('/', function (req, res) {
-    var colors = {};
+    var colors = {},
+        cwdRE = new RegExp('^' + cwd + '/');
+
     fileNames.forEach(function (filename) {
         console.log(filename);
         colors = extractor(filename, colors);
+        Object.keys(colors).forEach(function (color) {
+            colors[color].instances.forEach(function (instance) {
+                instance.fileName = instance.fileName.replace(cwdRE, '');
+            });
+        });
     });
 
     res.render('index.jade', { colors: colors });
