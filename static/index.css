@@ -1,5 +1,6 @@
 html {
     font-family: sans-serif;
+    line-height: 130%;
 }
 
 .color-list {
@@ -43,11 +44,27 @@ html {
     margin-top: 6px;
 }
 
-.file {
+.file,
+.selectors {
     margin-bottom: 6px;
 }
 
+.file__name,
+.property {
+    color: #2424F0;
+}
+
+.file__line-number {
+    color: #999;
+}
+
+.file__separator,
 .rule__separator {
     color: #4395f0;
     padding-right: 6px;
+}
+
+.rule__selector,
+.value {
+    color: #008080;
 }
