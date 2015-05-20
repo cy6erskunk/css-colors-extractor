@@ -22,8 +22,12 @@ html
         div#selector-template
             div.rule__selector .class
 
-        ul.color-list
-            each cc, key in colors
-                li.color-list-item(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}")
-                    span.color-list-item__number #{cc.instances.length}
+        div.content
+            div.color-list-wrapper
+                ul.color-list
+                    each cc, key in colors
+                        li.color-list-item(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}")
+                            span.color-list-item__number #{cc.instances.length}
+            div.color-info-wrapper
+
         script(src="info.js")

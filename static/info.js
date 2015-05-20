@@ -2,13 +2,14 @@ var infoViewer = {
         template: document.querySelector('#template'),
         instanceTemplate: document.querySelector('#instance-template'),
         selectorTemplate: document.querySelector('#selector-template'),
+        infoWrapper: document.querySelector('.color-info-wrapper'),
         removeOldInfoBlock: function () {
-            this.infoBlock && document.body.removeChild(this.infoBlock);
+            this.infoBlock && this.infoWrapper.removeChild(this.infoBlock);
             this.infoBlock = null;
         },
         _displayColor: function (color) {
             this.infoBlock.querySelector('.color').textContent = color.toUpperCase();
-        }, 
+        },
         _displayInstances: function (instances) {
             var instancesWrapper = this.infoBlock.querySelector('.instances');
 
@@ -41,7 +42,7 @@ var infoViewer = {
             this._displayColor(data.color);
             this._displayInstances(data.instances);
 
-            document.body.insertBefore(this.infoBlock, colorList);
+            this.infoWrapper.appendChild(this.infoBlock);
         },
         update: function (data) {
             this.removeOldInfoBlock();
@@ -54,5 +55,7 @@ colorList.addEventListener('click', function (e) {
     var currentTarget = e.target,
         colorData = JSON.parse(currentTarget.getAttribute('data-color'));
 
-    infoViewer.update(colorData);
+    if (currentTarget.className.indexOf('color-list-item') > -1) {
+        infoViewer.update(colorData);
+    }
 });

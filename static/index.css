@@ -3,13 +3,38 @@ html {
     line-height: 130%;
 }
 
-.color-list {
+html,
+body,
+.content {
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
+.content {
+    display: flex;
+}
+
+.color-list-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+
+    margin: 0;
+    padding: 0;
+}
+.color-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    margin: 4px 8px 4px 4px;
+    padding: 0;
+
+    box-shadow: 0 0 0 1px #aaa;
+}
+
 .color-list-item {
-    display: inline-block;
+    display: block;
     width: 100px;
     height: 100px;
     margin: 4px;
@@ -25,8 +50,11 @@ html {
     display: none;
 }
 
+.color-info-wrapper {
+    flex: 0 0 300px;
+    margin: 4px;
+}
 .color-info {
-    display: inline-block;
     box-shadow: 0 0 0 1px #aaa;
     padding: 8px;
 }
