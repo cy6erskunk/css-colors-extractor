@@ -13,15 +13,15 @@ var infoViewer = {
         _displayInstances: function (instances) {
             var instancesWrapper = this.infoBlock.querySelector('.instances');
 
-            instances.forEach(function (item) {
-                var instanceNode = infoViewer.instanceTemplate.querySelector('.instance').cloneNode(true),
+            instances.forEach(item => {
+                var instanceNode = this.instanceTemplate.querySelector('.instance').cloneNode(true),
                     selectorsWrapper = instanceNode.querySelector('.selectors');
 
                 instanceNode.querySelector('.file__name').textContent = item.fileName;
                 instanceNode.querySelector('.file__line-number').textContent = item.lineNumber;
 
-                item.selectors.forEach(function (selector) {
-                    var _node = infoViewer.selectorTemplate.querySelector('.rule__selector').cloneNode(true);
+                item.selectors.forEach(selector => {
+                    var _node = this.selectorTemplate.querySelector('.rule__selector').cloneNode(true);
 
                     _node.textContent = selector;
                     selectorsWrapper.appendChild(_node);
@@ -29,7 +29,7 @@ var infoViewer = {
 
                 instanceNode.querySelector('.property').textContent = item.origProp;
                 instanceNode.querySelector('.value').textContent = item.origValue;
-                infoViewer.infoBlock.appendChild(instanceNode);
+                this.infoBlock.appendChild(instanceNode);
             });
         },
         appendInfoBlock: function (data) {
@@ -47,15 +47,20 @@ var infoViewer = {
         update: function (data) {
             this.removeOldInfoBlock();
             this.appendInfoBlock(data);
+        },
+        bindClickHandler: function () {
+            var colorList = document.querySelector('.color-list');
+
+            colorList.addEventListener('click', e => {
+                var currentTarget = e.target,
+                    colorData = JSON.parse(currentTarget.getAttribute('data-color'));
+
+                if (currentTarget.className.indexOf('color-list-item') > -1) {
+                    this.update(colorData);
+                }
+            });
         }
-    },
-    colorList = document.querySelector('.color-list');
+    };
 
-colorList.addEventListener('click', function (e) {
-    var currentTarget = e.target,
-        colorData = JSON.parse(currentTarget.getAttribute('data-color'));
 
-    if (currentTarget.className.indexOf('color-list-item') > -1) {
-        infoViewer.update(colorData);
-    }
-});
+export default infoViewer;
