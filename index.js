@@ -1,11 +1,13 @@
 var extractor = require('./lib/extractor.js');
 var glob = require('glob');
 
-var cwd = process.argv[process.argv.length - 1];
+var cwd = process.argv[2] || '.';
 var fileNames;
-console.log(cwd);
+var ignore = JSON.parse(process.argv[3] || '["node_modules/**/*.css"]');
+console.log('cwd:', cwd);
+console.log('ignore:', ignore);
 
-glob("*.css", { cwd: cwd, matchBase: true }, function (err, filenames) {
+glob("**/*.css", { cwd: cwd, ignore: ignore }, function (err, filenames) {
     fileNames = filenames.map(function (name) {
         return cwd + '/' + name;
     });
