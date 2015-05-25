@@ -1,20 +1,17 @@
 ## Colors Extractor
 
-Simplistic CLI.
-Execute
+Run `index.js` and you get server which will recursively process all css files in provided dir and
+display report when someone GETs `http://hostname:9999/`.
 
-    node index.js "/path/to/folder/containing/css" "['array', 'of', 'patterns', 'to', 'exclude']"
+Options
 
-or
+    cwd     /path/to/folder/containing/css ('**/*.css' pattern is used to look for files)
+            default: '.'
+    ignore  pattern to exclude files from search. Might be used multiple times
+            default: 'node_modules/**/*.css'
 
-    node index.js "/path/to/folder/containing/css"
 
-or
+Examples:
+
     node index.js
-
-where last one means
-
-    node index.js '.' '["node_modules/**/*.css"]'
-
-and you'll launch server which will recursively process all css files in provided dir and
-display report when someone GETs `http://hostname:9999/`
+    node index.js --cwd "/Users/user/web/resources/css" --ignore "**/*.min.css" -i "wat/wat.css" -i "jquery/**/*.css"

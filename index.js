@@ -1,9 +1,16 @@
 var extractor = require('./lib/extractor.js');
 var glob = require('glob');
+var argv = require('yargs')
+    .default('cwd', '.')
+    .default('ignore', 'node_modules/**/*.css')
+    .array('ignore')
+    .alias('i', 'ignore')
+    .argv;
 
-var cwd = process.argv[2] || '.';
+var cwd = argv.cwd;
 var fileNames;
-var ignore = JSON.parse(process.argv[3] || '["node_modules/**/*.css"]');
+var ignore = argv.ignore;
+
 console.log('cwd:', cwd);
 console.log('ignore:', ignore);
 
