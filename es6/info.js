@@ -48,7 +48,7 @@ var infoViewer = {
             this.removeOldInfoBlock();
             this.appendInfoBlock(data);
         },
-        bindClickHandler: function () {
+        bindClickHandlers: function () {
             var colorList = document.querySelector('.color-list');
 
             colorList.addEventListener('click', e => {
@@ -57,6 +57,24 @@ var infoViewer = {
 
                 if (currentTarget.className.indexOf('color-list-item') > -1) {
                     this.update(colorData);
+                }
+            });
+            document.querySelector('#fifty-shades').addEventListener('change', e => {
+                this.fiftyShadesOfGray(!e.currentTarget.checked);
+            });
+        },
+        fiftyShadesOfGray: function (show) {
+            let nodeList = document.querySelectorAll('.color-list-item');
+
+            [].forEach.call(nodeList, i => {
+                if (show) {
+                    i.className = i.className.replace(/ hidden/, '');
+                } else {
+                    let _a = JSON.parse(i.getAttribute('data-color-array'));
+
+                    if (!(Math.abs(_a[0] - _a[1]) < 10 && Math.abs(_a[0] - _a[2]) < 10)) {
+                        i.className = i.className + ' hidden';
+                    }
                 }
             });
         }

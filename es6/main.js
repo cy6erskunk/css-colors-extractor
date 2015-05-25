@@ -1,2 +1,2 @@
 import Viewer from './info.js';
-Viewer.bindClickHandler();
+Viewer.bindClickHandlers();

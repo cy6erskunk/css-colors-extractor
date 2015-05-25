@@ -99,3 +99,21 @@ body,
 .value {
     color: #008080;
 }
+
+.hidden {
+    display: none;
+}
+
+#fifty-shades {
+    display: none;
+}
+.fifty-shades-label {
+    flex: 0 0 15px;
+    cursor: pointer;
+}
+#fifty-shades + .fifty-shades-label {
+    background: #ccc;
+}
+#fifty-shades:checked + .fifty-shades-label {
+    background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
+}
