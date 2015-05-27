@@ -117,3 +117,22 @@ body,
 #fifty-shades:checked + .fifty-shades-label {
     background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
 }
+
+/* --------- ARGV page -------------*/
+.content_argv {
+    flex-direction: column;
+    font-size: 18px;
+}
+
+.input {
+    width: 100%;
+    padding: 1px 3px;
+    font-size: 18px;
+}
+.cwd {
+    margin:6px 18px 18px;
+}
+
+.ignore {
+    margin: 6px 18px 18px;
+}

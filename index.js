@@ -43,6 +43,13 @@ app.get('/', function (req, res) {
     res.render('index.jade', { colors: colors });
 });
 
+app.get('/argv', function (req, res) {
+    res.render('argv.jade', { params: {
+        cwd: cwd,
+        ignore: ignore
+    } });
+});
+
 var server = app.listen(port, function () {
 
     var host = server.address().address;

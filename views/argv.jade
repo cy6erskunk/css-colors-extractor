@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", type="text/css", href="index.css")
+    body
+        div.content.content_argv
+            section.cwd
+                h1.cwd__title CWD
+                input.input.cwd__input(type="text", value="#{params.cwd}")
+            section.ignore
+                h1.ignore__title Ignore patterns
+                for i in params.ignore
+                    input.input.ignore__item(type="text", value="#{i}")
