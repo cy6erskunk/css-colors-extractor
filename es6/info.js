@@ -59,15 +59,23 @@ var infoViewer = {
                     this.update(colorData);
                 }
             });
+
             document.querySelector('#fifty-shades').addEventListener('change', e => {
                 this.fiftyShadesOfGray(!e.currentTarget.checked);
+                localStorage.setItem('color', e.currentTarget.checked);
             });
+
+            let _c = localStorage.getItem('color');
+            if ( _c != null) {
+                this.fiftyShadesOfGray(!!_c);
+                document.querySelector('#fifty-shades').checked = !_c;
+            }
         },
-        fiftyShadesOfGray: function (show) {
+        fiftyShadesOfGray: function (showAll) {
             let nodeList = document.querySelectorAll('.color-list-item');
 
             [].forEach.call(nodeList, i => {
-                if (show) {
+                if (showAll) {
                     i.className = i.className.replace(/ hidden/, '');
                     i.style.order = 0;
                 } else {
