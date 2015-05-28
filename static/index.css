@@ -136,3 +136,16 @@ body,
 .ignore {
     margin: 6px 18px 18px;
 }
+
+.update-argv {
+    display: inline-block;
+    padding: 4px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}

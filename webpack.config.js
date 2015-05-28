@@ -1,10 +1,13 @@
 var path = require('path');
 
 module.exports = {
-    entry: './es6/main.js',
+    entry: {
+        index: './es6/main.js',
+        argv: './es6/argv.js'
+    },
     output: {
         path: './static',
-        filename: 'info.js'
+        filename: '[name].bundle.js'
     },
     module: {
         loaders: [

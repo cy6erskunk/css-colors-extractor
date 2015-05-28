@@ -11,3 +11,6 @@ html
                 h1.ignore__title Ignore patterns
                 for i in params.ignore
                     input.input.ignore__item(type="text", value="#{i}")
+            input.update-argv(type="button", value="Update config")
+
+        script(src="argv.bundle.js")

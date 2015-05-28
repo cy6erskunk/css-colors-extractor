@@ -20,11 +20,14 @@ glob("**/*.css", { cwd: cwd, ignore: ignore }, function (err, filenames) {
     });
 });
 
+var fs = require('fs');
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var port = 9999;
 
 app.use(express.static(__dirname + '/static'));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     var colors = {},
@@ -48,6 +51,21 @@ app.get('/argv', function (req, res) {
         cwd: cwd,
         ignore: ignore
     } });
+});
+
+app.post('/argv', function (req, res) {
+    var config = req.body;
+
+    if (!config) {
+        res.status(400).send('empty config received');
+    } else {
+        try {
+            fs.writeFileSync('.config.json', JSON.stringify(config), { encoding: 'utf8' });
+        } catch (e) {
+            res.status(500).send(e.message);
+        }
+        res.json(req.body);
+    }
 });
 
 var server = app.listen(port, function () {
