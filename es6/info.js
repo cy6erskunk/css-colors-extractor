@@ -60,16 +60,14 @@ var infoViewer = {
                 }
             });
 
-            document.querySelector('#fifty-shades').addEventListener('change', e => {
-                this.fiftyShadesOfGray(!e.currentTarget.checked);
+            document.querySelector('#show-all-colors').addEventListener('change', e => {
+                this.fiftyShadesOfGray(e.currentTarget.checked);
                 localStorage.setItem('color', e.currentTarget.checked);
             });
 
-            let _c = localStorage.getItem('color');
-            if ( _c != null) {
-                this.fiftyShadesOfGray(!!_c);
-                document.querySelector('#fifty-shades').checked = !_c;
-            }
+            let _c = localStorage.getItem('color') === 'true';
+            this.fiftyShadesOfGray(!!_c);
+            document.querySelector('#show-all-colors').checked = !!_c;
         },
         fiftyShadesOfGray: function (showAll) {
             let nodeList = document.querySelectorAll('.color-list-item');

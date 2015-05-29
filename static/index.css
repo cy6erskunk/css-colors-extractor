@@ -104,17 +104,17 @@ body,
     display: none;
 }
 
-#fifty-shades {
+#show-all-colors {
     display: none;
 }
-.fifty-shades-label {
+.show-all-colors-label {
     flex: 0 0 15px;
     cursor: pointer;
 }
-#fifty-shades + .fifty-shades-label {
+#show-all-colors + .show-all-colors-label {
     background: #ccc;
 }
-#fifty-shades:checked + .fifty-shades-label {
+#show-all-colors:checked + .show-all-colors-label {
     background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
 }
 
