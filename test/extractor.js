@@ -1,23 +1,14 @@
 var extractor = require('../lib/extractor.js');
-var fs = require('fs');
 
-exports.testEmptySet = function (test) {
-    test.throws(function () {extractor('nonexistentFile.css')});
+exports.noData = function (test) {
+    test.throws(function () {extractor({})});
     test.throws(function () {extractor()});
     test.done();
 };
 
-var testFileName = 'test/test.css';
-
-exports.testEmptyFile = {
-    setUp: function (cb) {
-        fs.writeFile(testFileName, '', cb);
-    },
-    tearDown: function (cb) {
-        fs.unlink(testFileName, cb);
-    },
+exports.emptyData = {
     emptyObject: function (test) {
-        var result = extractor(testFileName),
+        var result = extractor(''),
             toS = Object.prototype.toString;
 
         test.deepEqual(result, {});
@@ -26,32 +17,22 @@ exports.testEmptyFile = {
     }
 };
 
-exports.testNonCssFile = {
-    setUp: function (cb) {
-        fs.writeFile(testFileName, 'xxxx---====yyy', cb);
-    },
-    tearDown: function (cb) {
-        fs.unlink(testFileName, cb);
-    },
+exports.invalidCssData = {
     throwsError: function (test) {
-        test.throws(function () { extractor(testFileName); });
+        test.throws(function () { extractor('xxxx---====yyy'); });
         test.done();
     }
 };
 
-exports.testCssFile = {
-    setUp: function (cb) {
-        fs.writeFile(testFileName, '.xxx{color:red;}\n#yyy{background-color: navy}', cb);
-    },
-    tearDown: function (cb) {
-        fs.unlink(testFileName, cb);
-    },
+var validData = '.xxx{color:red;}\n#yyy{background-color: navy}';
+
+exports.validCssData = {
     noError: function (test) {
-        test.doesNotThrow(function () { extractor(testFileName); });
+        test.doesNotThrow(function () { extractor(validData); });
         test.done();
     },
     colorsCount: function (test) {
-        var result = extractor(testFileName);
+        var result = extractor(validData);
         test.equal(Object.keys(result).length, 2);
         test.done();
     }

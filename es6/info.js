@@ -17,7 +17,7 @@ var infoViewer = {
                 var instanceNode = this.instanceTemplate.querySelector('.instance').cloneNode(true),
                     selectorsWrapper = instanceNode.querySelector('.selectors');
 
-                instanceNode.querySelector('.file__name').textContent = item.fileName;
+                instanceNode.querySelector('.file__name').textContent = item.filename;
                 instanceNode.querySelector('.file__line-number').textContent = item.lineNumber;
 
                 item.selectors.forEach(selector => {

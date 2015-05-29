@@ -8,7 +8,6 @@ var argv = require('yargs')
     .argv;
 
 var cwd = argv.cwd;
-var fileNames;
 var ignore = argv.ignore;
 
 console.log('cwd:', cwd);
@@ -33,11 +32,20 @@ app.get('/', function (req, res) {
                 return cwd + '/' + name;
             })
             .forEach(function (filename) {
-                console.log(filename);
-                colors = extractor(filename, colors);
+                try {
+                    colors = extractor({ data: fs.readFileSync(filename, { encoding: 'utf-8' }), source: filename }, colors);
+                } catch (e) {
+                    if (e instanceof extractor.ColorParseError) {
+                        console.error('Could not parse color "%s" @ %s:%s "%s: %s"', e.value, filename, e.line, e.property, e.origValue);
+                    } else {
+                        console.error('Doh!', e.message);
+                    }
+                }
                 Object.keys(colors).forEach(function (color) {
                     colors[color].instances.forEach(function (instance) {
-                        instance.fileName = instance.fileName.replace(cwdRE, '');
+                        if (!instance.filename) {
+                            instance.filename = filename.replace(cwdRE, '');
+                        }
                     });
                 });
             });
