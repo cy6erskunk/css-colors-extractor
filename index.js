@@ -1,8 +1,20 @@
 var extractor = require('./lib/extractor.js');
 var glob = require('glob');
+var fs = require('fs');
+var express = require('express');
+var bodyParser = require('body-parser');
+
+var config;
+
+try {
+    config = require('./..config.json');
+} catch (e) {
+    console.log('could not read config file');
+}
+
 var argv = require('yargs')
-    .default('cwd', '.')
-    .default('ignore', 'node_modules/**/*.css')
+    .default('cwd', config && config.cwd || '.')
+    .default('ignore', config && config.ignore || 'node_modules/**/*.css')
     .array('ignore')
     .alias('i', 'ignore')
     .argv;
@@ -13,9 +25,6 @@ var ignore = argv.ignore;
 console.log('cwd:', cwd);
 console.log('ignore:', ignore);
 
-var fs = require('fs');
-var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
 var port = 9999;
 
