@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var config;
 
 try {
-    config = require('./..config.json');
+    config = require('./.config.json');
 } catch (e) {
     console.log('could not read config file');
 }
@@ -78,6 +78,10 @@ app.post('/argv', function (req, res) {
     } else {
         try {
             fs.writeFileSync('.config.json', JSON.stringify(config), { encoding: 'utf8' });
+            console.log('config saved');
+            config.cwd && (cwd = config.cwd);
+            config.ignore && (ignore = config.ignore);
+            console.log('config reloaded');
         } catch (e) {
             res.status(500).send(e.message);
         }

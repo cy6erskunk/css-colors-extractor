@@ -118,6 +118,18 @@ body,
     background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
 }
 
+.top-right {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.top-right.screw {
+    background: url('screw.svg') 0 0/16px no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
 /* --------- ARGV page -------------*/
 .content_argv {
     flex-direction: column;

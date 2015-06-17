@@ -17,7 +17,16 @@ class ConfigUpdater {
     bindEventHandlers () {
         this.button.addEventListener('click', e => {
             this.postValues();
-        })
+        });
+
+        document.body.addEventListener('keyup', function (e) {
+            if (e.keyCode === 13 && e.target.matches('.ignore__item')) {
+                let input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'input ignore__item';
+                document.querySelector('.ignore').appendChild(input);
+            }
+        });
     }
 
     postValues () {
