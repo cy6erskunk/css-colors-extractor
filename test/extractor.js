@@ -25,6 +25,7 @@ exports.invalidCssData = {
     doesNotThrow: function (test) {
         test.doesNotThrow(function () { extractor('xxx{padding:0;}'); });
         test.doesNotThrow(function () { extractor('xxx{border:none;}'); });
+        test.doesNotThrow(function () { extractor('xxx{background-position:0 0;}'); });
         test.done();
     }
 };
