@@ -19,12 +19,14 @@ class ConfigUpdater {
             this.postValues();
         });
 
-        document.body.addEventListener('keyup', function (e) {
+        document.body.addEventListener('keyup', e => {
             if (e.keyCode === 13 && e.target.matches('.ignore__item')) {
                 let input = document.createElement('input');
                 input.type = 'text';
                 input.className = 'input ignore__item';
                 document.querySelector('.ignore').appendChild(input);
+            } else if (e.keyCode === 13 && e.target.matches('.cwd__input')) {
+                this.postValues();
             }
         });
     }
