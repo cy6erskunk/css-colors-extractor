@@ -79,7 +79,7 @@ var infoViewer = {
                 } else {
                     let _a = JSON.parse(i.getAttribute('data-color-array'));
 
-                    if (Math.abs(_a[0] - _a[1]) < 10 && Math.abs(_a[0] - _a[2]) < 10) {
+                    if (Math.abs(_a[0] - _a[1]) < 15 && Math.abs(_a[0] - _a[2]) < 15) {
                         i.style.order = _a[0];
                     } else {
                         i.className = i.className + ' hidden';
