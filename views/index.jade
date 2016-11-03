@@ -28,8 +28,8 @@ html
 
             div.color-list-wrapper
                 ul.color-list
-                    each cc, key in colors
-                        li.color-list-item(style="background-color: #{key}", data-color="#{JSON.stringify(cc)}", data-color-array="#{JSON.stringify(cc.colorArray)}")
+                    each cc in colors
+                        li.color-list-item(style="background-color: #{cc.key}", data-color="#{JSON.stringify(cc)}", data-color-array="#{JSON.stringify(cc.colorArray)}", data-key="#{cc.key}")
                             span.color-list-item__number #{cc.instances.length}
             div.color-info-wrapper
 

@@ -59,7 +59,16 @@ app.get('/', function (req, res) {
                 });
             });
 
-        res.render('index.jade', { colors: colors });
+        var colorsArray = [];
+        Object.keys(colors).forEach(function (key) {
+            var color = colors[key];
+            color.key = key;
+            colorsArray.push(color);
+        });
+
+        res.render('index.jade', { colors: colorsArray.sort(function (a, b) {
+            return a.hue > b.hue ? 1 : -1;
+        })});
     });
 });
 
