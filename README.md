@@ -1,4 +1,5 @@
 ## Colors Extractor
+![Build Status](https://travis-ci.org/cy6erskunk/css-colors-extractor.svg?branch=master)
 
 Run `index.js` and you get server which will recursively process all css files in provided dir and
 display report when someone GETs `http://hostname:9999/`.
