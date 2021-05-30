@@ -28,6 +28,8 @@ console.log('ignore:', ignore);
 var app = express();
 var port = 9999;
 
+app.set('views', __dirname + '/views');
+
 app.use(express.static(__dirname + '/static'));
 app.use(bodyParser.json());
 
@@ -73,7 +75,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/argv', function (req, res) {
-    res.render('argv.jade', { params: {
+    res.render('./views/argv.jade', { params: {
         cwd: cwd,
         ignore: ignore
     } });
