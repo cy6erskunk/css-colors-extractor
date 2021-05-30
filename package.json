@@ -6,6 +6,7 @@
   "bin": "bin/index.js",
   "files": [
     "bin",
+    "lib",
     "static",
     "views",
     "index.js",
