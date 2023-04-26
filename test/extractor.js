@@ -1,4 +1,4 @@
-var extractor = require("../lib/extractor.js");
+const extractor = require("../lib/extractor.js");
 
 exports.noData = function (test) {
 	test.throws(function () {
@@ -12,8 +12,8 @@ exports.noData = function (test) {
 
 exports.emptyData = {
 	emptyObject: function (test) {
-		var result = extractor(""),
-			toS = Object.prototype.toString;
+		const result = extractor("");
+		const toS = Object.prototype.toString;
 
 		test.deepEqual(result, {});
 		test.equal(toS.call(result), toS.call({}));
@@ -42,7 +42,7 @@ exports.invalidCssData = {
 	},
 };
 
-var simpleValidData = ".xxx{color:#000;}";
+const simpleValidData = ".xxx{color:#000;}";
 
 exports.validCssData = {
 	noError: function (test) {
@@ -53,7 +53,7 @@ exports.validCssData = {
 		test.done();
 	},
 	noImplicitAccumulation: function (test) {
-		var result;
+		let result;
 		result = extractor(simpleValidData);
 		result = extractor(simpleValidData);
 
@@ -67,7 +67,7 @@ exports.validCssData = {
 		test.done();
 	},
 	explicitAccumulation: function (test) {
-		var result;
+		let result;
 		result = extractor(".xxx{color:#000;}"); // 1
 		result = extractor(".xxx{background-color:#111;}", result); // 2
 
@@ -75,7 +75,7 @@ exports.validCssData = {
 		test.done();
 	},
 	colorsCount: function (test) {
-		var result;
+		let result;
 		result = extractor(".xxx {color:#000;}"); // 1
 		result = extractor(".xxx {background-color:#111;}", result); // 2
 		result = extractor(".xxx {border-color:#222;}", result); // 3

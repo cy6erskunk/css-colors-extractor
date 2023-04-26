@@ -21,7 +21,7 @@ class ConfigUpdater {
 
 		document.body.addEventListener("keyup", (e) => {
 			if (e.keyCode === 13 && e.target.matches(".ignore__item")) {
-				let input = document.createElement("input");
+				const input = document.createElement("input");
 				input.type = "text";
 				input.className = "input ignore__item";
 				document.querySelector(".ignore").appendChild(input);
@@ -32,12 +32,12 @@ class ConfigUpdater {
 	}
 
 	postValues() {
-		let url = "/argv",
-			data = {
+		const url = "/argv";
+		const data = {
 				cwd: this.cwd,
 				ignore: this.ignore,
-			},
-			req = new XMLHttpRequest();
+			};
+		const req = new XMLHttpRequest();
 
 		req.onreadystatechange = () => {
 			if (req.readyState === 4) {
@@ -68,10 +68,10 @@ class ConfigUpdater {
 	}
 
 	updateButtonState(state) {
-		this.button.className += " " + state;
+		this.button.className += ` ${state}`;
 	}
 }
 
-var config = new ConfigUpdater();
+const config = new ConfigUpdater();
 
 export default config;

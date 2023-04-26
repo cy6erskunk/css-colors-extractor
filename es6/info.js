@@ -1,4 +1,4 @@
-var infoViewer = {
+const infoViewer = {
 	template: document.querySelector("#template"),
 	instanceTemplate: document.querySelector("#instance-template"),
 	selectorTemplate: document.querySelector("#selector-template"),
@@ -11,20 +11,20 @@ var infoViewer = {
 		this.infoBlock.querySelector(".color").textContent = color.toUpperCase();
 	},
 	_displayInstances: function (instances) {
-		var instancesWrapper = this.infoBlock.querySelector(".instances");
+		const instancesWrapper = this.infoBlock.querySelector(".instances");
 
 		instances.forEach((item) => {
-			var instanceNode = this.instanceTemplate
+			const instanceNode = this.instanceTemplate
 					.querySelector(".instance")
-					.cloneNode(true),
-				selectorsWrapper = instanceNode.querySelector(".selectors");
+					.cloneNode(true);
+			const selectorsWrapper = instanceNode.querySelector(".selectors");
 
 			instanceNode.querySelector(".file__name").textContent = item.filename;
 			instanceNode.querySelector(".file__line-number").textContent =
 				item.lineNumber;
 
 			item.selectors.forEach((selector) => {
-				var _node = this.selectorTemplate
+				const _node = this.selectorTemplate
 					.querySelector(".rule__selector")
 					.cloneNode(true);
 
@@ -54,11 +54,11 @@ var infoViewer = {
 		this.appendInfoBlock(data);
 	},
 	bindClickHandlers: function () {
-		var colorList = document.querySelector(".color-list");
+		const colorList = document.querySelector(".color-list");
 
 		colorList.addEventListener("click", (e) => {
-			var currentTarget = e.target,
-				colorData = JSON.parse(currentTarget.getAttribute("data-color"));
+			const currentTarget = e.target;
+			const colorData = JSON.parse(currentTarget.getAttribute("data-color"));
 
 			if (currentTarget.className.indexOf("color-list-item") > -1) {
 				this.update(colorData);
@@ -72,24 +72,24 @@ var infoViewer = {
 				localStorage.setItem("color", e.currentTarget.checked);
 			});
 
-		let _c = localStorage.getItem("color") === "true";
+		const _c = localStorage.getItem("color") === "true";
 		this.fiftyShadesOfGray(!!_c);
 		document.querySelector("#show-all-colors").checked = !!_c;
 	},
 	fiftyShadesOfGray: function (showAll) {
-		let nodeList = document.querySelectorAll(".color-list-item");
+		const nodeList = document.querySelectorAll(".color-list-item");
 
 		[].forEach.call(nodeList, (i) => {
 			if (showAll) {
 				i.className = i.className.replace(/ hidden/, "");
 				i.style.order = 0;
 			} else {
-				let _a = JSON.parse(i.getAttribute("data-color-array"));
+				const _a = JSON.parse(i.getAttribute("data-color-array"));
 
 				if (Math.abs(_a[0] - _a[1]) < 15 && Math.abs(_a[0] - _a[2]) < 15) {
 					i.style.order = _a[0];
 				} else {
-					i.className = i.className + " hidden";
+					i.className = `${i.className} hidden`;
 				}
 			}
 		});
