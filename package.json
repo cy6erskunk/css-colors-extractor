@@ -27,8 +27,7 @@
   "scripts": {
     "test": "nodeunit",
     "build": "webpack",
-    "format": "rome format bin/ es6/ lib/ test/ views/",
-    "check": "rome check bin/ es6 lib/ test/ views/"
+    "rome:ci": "rome ci bin/ es6/ lib/ test/ views/ rome.json webpack.config.js"
   },
   "author": "cy6erskunk",
   "repository": "https://github.com/cy6erskunk/css-colors-extractor.git",
